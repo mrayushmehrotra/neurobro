@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { IconPlayerPlay, IconPlayerPause, IconRotate, IconFlag } from "@tabler/icons-react";
+import ArrowBackUpIcon from "@/components/ui/arrow-back-up-icon";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 function pad(n: number, len = 2) { return String(n).padStart(len, "0"); }
@@ -101,9 +102,10 @@ export default function StopwatchPage() {
             {/* Topbar */}
             <div className="nb-topbar">
                 <div className="flex items-center gap-2">
-                    <Link href="/" className="w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all hover:scale-110"
-                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }}>
-                        ←
+                    <Link href="/"
+                        className="rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                        style={{ color: "rgba(255,255,255,0.55)" }}>
+                        <ArrowBackUpIcon size={22} />
                     </Link>
                     <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
                     <h1 className="font-bold text-base">⏱️ Stopwatch</h1>

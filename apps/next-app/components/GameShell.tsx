@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import GameTimer, { GameTimerHandle } from "@/components/GameTimer";
 import { RefObject } from "react";
+import ArrowBackUpIcon from "@/components/ui/arrow-back-up-icon";
 
 interface GameShellProps {
     title: string;
@@ -44,10 +45,10 @@ export default function GameShell({
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <Link
                         href="/"
-                        className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all hover:scale-110"
-                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }}
+                        className="shrink-0 rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                        style={{ color: "rgba(255,255,255,0.55)" }}
                     >
-                        ←
+                        <ArrowBackUpIcon size={22} />
                     </Link>
                     <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
                     <h1 className="font-bold text-sm sm:text-base flex items-center gap-1.5 text-white truncate">

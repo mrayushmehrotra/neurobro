@@ -1,5 +1,9 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useAnimation } from "motion/react";
+import type { AnimatedIconHandle } from "./ui/types";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -25,16 +29,23 @@ import {
   IconClockPlay,
 } from "@tabler/icons-react";
 
+import BrainCircuitIcon from "./ui/brain-circuit-icon";
+import AlarmClockPlusIcon from "./ui/alaram-icon";
+import ClockIcon from "./ui/clock-icon";
+import SlackIcon from "./ui/slack-icon";
+
+
+
 const GAMES = [
-  { label: "Memory Match", href: "/games/memory", icon: IconCards, color: "text-amber-400", activeColor: "rgba(245,166,35,0.12)", activeBorder: "rgba(245,166,35,0.25)" },
+  { label: "Memory Match", href: "/games/memory", icon: SlackIcon, color: "text-amber-400", activeColor: "rgba(245,166,35,0.12)", activeBorder: "rgba(245,166,35,0.25)" },
   { label: "Mental Math", href: "/games/mental-math", icon: IconMathFunction, color: "text-violet-400", activeColor: "rgba(139,92,246,0.12)", activeBorder: "rgba(139,92,246,0.25)" },
   { label: "Schulte Table", href: "/games/schulte", icon: IconTable, color: "text-sky-400", activeColor: "rgba(56,189,248,0.12)", activeBorder: "rgba(56,189,248,0.25)" },
   { label: "Reaction Training", href: "/games/reaction", icon: IconBolt, color: "text-emerald-400", activeColor: "rgba(16,185,129,0.12)", activeBorder: "rgba(16,185,129,0.25)" },
 ];
 
 const TOOLS = [
-  { label: "Stopwatch", href: "/timer/stopwatch", icon: IconStopwatch, color: "text-amber-400", activeColor: "rgba(245,166,35,0.12)", activeBorder: "rgba(245,166,35,0.25)" },
-  { label: "Pomodoro", href: "/timer/pomodoro", icon: IconClockPlay, color: "text-red-400", activeColor: "rgba(248,113,113,0.12)", activeBorder: "rgba(248,113,113,0.25)" },
+  { label: "Stopwatch", href: "/timer/stopwatch", icon: AlarmClockPlusIcon, color: "text-amber-400", activeColor: "rgba(245,166,35,0.12)", activeBorder: "rgba(245,166,35,0.25)" },
+  { label: "Pomodoro", href: "/timer/pomodoro", icon: ClockIcon, color: "text-red-400", activeColor: "rgba(248,113,113,0.12)", activeBorder: "rgba(248,113,113,0.25)" },
 ];
 
 function NavItem({
@@ -44,28 +55,77 @@ function NavItem({
   item: (typeof GAMES)[0];
   isActive: boolean;
 }) {
-  const Icon = item.icon;
+  const Icon = item.icon as React.ElementType;
+
+  // ref for animated icons (AlarmClockPlusIcon / ClockIcon)
+  const animatedRef = useRef<AnimatedIconHandle>(null);
+  // animation controls for plain tabler icons
+  const iconControls = useAnimation();
+
+  const isAnimatedIcon =
+    Icon === (AlarmClockPlusIcon as React.ElementType) ||
+    Icon === (ClockIcon as React.ElementType);
+
+  const handleMouseEnter = () => {
+    if (isAnimatedIcon && animatedRef.current) {
+      animatedRef.current.startAnimation();
+    } else {
+      iconControls.start({
+        rotate: [0, -15, 12, -8, 5, 0],
+        scale: [1, 1.25, 1.1, 1.15, 1.05, 1],
+        transition: { duration: 0.5, ease: "easeOut" },
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (isAnimatedIcon && animatedRef.current) {
+      animatedRef.current.stopAnimation();
+    } else {
+      iconControls.start({
+        rotate: 0,
+        scale: 1,
+        transition: { duration: 0.2, ease: "easeOut" },
+      });
+    }
+  };
+
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton asChild isActive={isActive} tooltip={item.label}>
-        <Link
-          href={item.href}
-          className={`
-            flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
-            transition-all duration-200 cursor-pointer
-            ${isActive ? item.color : "text-white/55 hover:text-white"}
-          `}
-          style={
-            isActive
-              ? { background: item.activeColor, border: `1px solid ${item.activeBorder}`, boxShadow: `0 2px 12px ${item.activeColor}` }
-              : { background: "transparent", border: "1px solid transparent" }
-          }
-        >
-          <span className={`${item.color} transition-all`}>
-            <Icon size={16} />
-          </span>
-          <span>{item.label}</span>
-        </Link>
+      <SidebarMenuButton
+        isActive={isActive}
+        tooltip={item.label}
+        render={
+          <Link
+            href={item.href}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          />
+        }
+        className={`
+          flex items-center gap-3 px-3 py-3 rounded-xl text-base font-medium
+          transition-all duration-200 cursor-pointer
+          ${isActive ? item.color : "text-white/55 hover:text-white"}
+        `}
+        style={
+          isActive
+            ? { background: item.activeColor, border: `1px solid ${item.activeBorder}`, boxShadow: `0 2px 12px ${item.activeColor}` }
+            : { background: "transparent", border: "1px solid transparent" }
+        }
+      >
+        <span className={`${item.color} transition-colors shrink-0`}>
+          {isAnimatedIcon ? (
+            <Icon ref={animatedRef} size={24} />
+          ) : (
+            <motion.span
+              className="inline-flex"
+              animate={iconControls}
+            >
+              <Icon size={24} />
+            </motion.span>
+          )}
+        </span>
+        <span>{item.label}</span>
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
@@ -83,14 +143,14 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
         <SidebarHeader>
           <div className="flex items-center gap-3 px-2 py-3">
             <div
-              className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+              className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
               style={{ background: "linear-gradient(135deg, #f5a623, #f97316)", boxShadow: "0 4px 16px rgba(245,166,35,0.35)" }}
             >
-              <IconBrain size={18} className="text-black" />
+              <BrainCircuitIcon size={28} className="text-black" />
             </div>
             <div>
-              <p className="font-bold text-sm leading-tight text-white">NeuroBro</p>
-              <p className="text-xs leading-tight" style={{ color: "rgba(255,255,255,0.4)" }}>Brain Training</p>
+              <p className="font-bold text-base leading-tight text-white">NeuroBro</p>
+              <p className="text-sm leading-tight" style={{ color: "rgba(255,255,255,0.4)" }}>Brain Training</p>
             </div>
           </div>
         </SidebarHeader>
@@ -99,7 +159,7 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
           {/* ── Games ── */}
           <SidebarGroup>
             <SidebarGroupLabel
-              className="text-xs uppercase tracking-widest px-3 mb-1"
+              className="text-sm uppercase tracking-widest px-3 mb-1"
               style={{ color: "rgba(255,255,255,0.25)" }}
             >
               Games
@@ -117,7 +177,7 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
           {/* ── Tools ── */}
           <SidebarGroup>
             <SidebarGroupLabel
-              className="text-xs uppercase tracking-widest px-3 mb-1"
+              className="text-sm uppercase tracking-widest px-3 mb-1"
               style={{ color: "rgba(255,255,255,0.25)" }}
             >
               Tools
@@ -136,7 +196,7 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
             className="rounded-xl p-3 text-center"
             style={{ background: "rgba(245,166,35,0.06)", border: "1px solid rgba(245,166,35,0.15)" }}
           >
-            <p className="text-xs font-semibold text-amber-400/80">🧠 Train daily</p>
+            <p className="text-sm font-semibold text-amber-400/80">🧠 Train daily</p>
             <p className="text-xs mt-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>Stay sharp, every day.</p>
           </div>
         </div>
@@ -156,7 +216,7 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
               className="w-6 h-6 rounded-lg flex items-center justify-center"
               style={{ background: "linear-gradient(135deg, #f5a623, #f97316)" }}
             >
-              <IconBrain size={12} className="text-black" />
+              <IconBrain size={15} className="text-black" />
             </div>
             <span className="font-bold text-sm text-white">NeuroBro</span>
           </div>
@@ -180,8 +240,8 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
                 className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all ${pathname === "/" ? "text-amber-400" : "text-white/40 hover:text-white/70"}`}
                 style={pathname === "/" ? { background: "rgba(245,166,35,0.12)" } : {}}
               >
-                <IconBrain size={18} />
-                <span className="text-[9px] font-medium">Home</span>
+                <IconBrain size={22} />
+                <span className="text-[10px] font-medium">Home</span>
               </Link>
               {GAMES.map((item) => {
                 const Icon = item.icon;
@@ -193,8 +253,8 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
                     className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all ${isActive ? item.color : "text-white/40 hover:text-white/70"}`}
                     style={isActive ? { background: item.activeColor } : {}}
                   >
-                    <Icon size={18} />
-                    <span className="text-[9px] font-medium leading-none">{item.label.split(" ")[0]}</span>
+                    <Icon size={22} />
+                    <span className="text-[10px] font-medium leading-none">{item.label.split(" ")[0]}</span>
                   </Link>
                 );
               })}
@@ -215,8 +275,8 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
                     className={`flex flex-col items-center gap-0.5 px-4 py-1 rounded-xl transition-all ${isActive ? item.color : "text-white/35 hover:text-white/60"}`}
                     style={isActive ? { background: item.activeColor } : {}}
                   >
-                    <Icon size={18} />
-                    <span className="text-[9px] font-medium">{item.label}</span>
+                    <Icon size={22} />
+                    <span className="text-[10px] font-medium">{item.label}</span>
                   </Link>
                 );
               })}

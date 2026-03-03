@@ -146,12 +146,17 @@ export default function Home() {
             </div>
           </div>
 
+<br />
           {/* ── Bottom tip ── */}
           <div className="mt-12 text-center animate-nb-slide-up" style={{ animationDelay: "0.4s" }}>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
               🧠 Tip: Daily practice for 10 minutes significantly improves cognitive performance.
             </p>
           </div>
+
+<br />
+<br />
+<br />
         </div>
       </div>
     </SidebarUI>

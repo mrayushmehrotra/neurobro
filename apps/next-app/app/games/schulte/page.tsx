@@ -151,7 +151,7 @@ export default function SchulteGame() {
                     {phase === "playing" && (
                         <div className="flex items-center gap-3 sm:gap-4">
                             <div className="nb-stat">
-                                <span className="nb-stat-value text-sky-400 text-2xl">{next}</span>
+                                <span className="nb-stat-value text-white text-2xl">{next}</span>
                                 <span className="nb-stat-label">find</span>
                             </div>
                             <div className="nb-stat">
@@ -180,7 +180,6 @@ export default function SchulteGame() {
                         style={{ gridTemplateColumns: `repeat(${gridOpt.size}, minmax(0, 1fr))` }}>
                         {grid.map((num) => {
                             const isFound = num < next;
-                            const isCurrent = num === next && phase === "playing";
                             const isWrong = wrongNum === num;
                             const isDone = phase === "done";
 
@@ -195,9 +194,7 @@ export default function SchulteGame() {
                                             ? { background: "rgba(52,211,153,0.12)", border: "1px solid rgba(52,211,153,0.25)", color: "rgba(52,211,153,0.4)", cursor: "default" }
                                             : isWrong
                                                 ? { background: "rgba(248,113,113,0.2)", border: "1px solid rgba(248,113,113,0.5)", color: "#f87171", transform: "scale(0.92)" }
-                                                : isCurrent
-                                                    ? { background: "rgba(56,189,248,0.15)", border: "2px solid rgba(56,189,248,0.6)", color: "#7dd3fc", boxShadow: "0 0 20px rgba(56,189,248,0.2)", transform: "scale(1.05)" }
-                                                    : { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.75)" }
+                                                : { background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.75)" }
                                     }
                                 >
                                     {isFound ? "✓" : num}

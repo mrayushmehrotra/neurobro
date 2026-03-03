@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import Head from "next/head";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
@@ -77,6 +78,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${outfit.variable} dark`}>
+      <Head>
+        <link rel="icon" href="/icon-192.png" />
+      </Head>
       <body className="antialiased font-sans">{children}</body>
     </html>
   );

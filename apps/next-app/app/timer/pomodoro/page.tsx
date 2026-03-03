@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { IconPlayerPlay, IconPlayerPause, IconRotate, IconSkipForward } from "@tabler/icons-react";
+import { IconPlayerPlay, IconPlayerPause, IconRotate, IconPlayerSkipForward } from "@tabler/icons-react";
+import ArrowBackUpIcon from "@/components/ui/arrow-back-up-icon";
 
 // ── Config ─────────────────────────────────────────────────────────────────────
 type SessionType = "focus" | "short" | "long";
@@ -41,6 +42,21 @@ export default function PomodoroPage() {
     const startRef = useRef<number | null>(null);
     const accRef = useRef(0);
     const rafRef = useRef<number | null>(null);
+    const yayRef = useRef<HTMLAudioElement | null>(null);
+
+    // Initialise audio once on client
+    useEffect(() => {
+        yayRef.current = new Audio("/yay.mp3");
+        yayRef.current.volume = 0.8;
+    }, []);
+
+    // Play yay! whenever a session completes
+    useEffect(() => {
+        if (justFinished && yayRef.current) {
+            yayRef.current.currentTime = 0;
+            yayRef.current.play().catch(() => { }); // swallow autoplay policy errors
+        }
+    }, [justFinished]);
 
     const cfg = SESSION_CONFIG[sessionType];
     const totalMs = durations[sessionType] * 60_000;
@@ -139,9 +155,10 @@ export default function PomodoroPage() {
             {/* Topbar */}
             <div className="nb-topbar">
                 <div className="flex items-center gap-2">
-                    <Link href="/" className="w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all hover:scale-110"
-                        style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.5)" }}>
-                        ←
+                    <Link href="/"
+                        className="rounded-lg flex items-center justify-center transition-all hover:scale-110"
+                        style={{ color: "rgba(255,255,255,0.55)" }}>
+                        <ArrowBackUpIcon size={22} />
                     </Link>
                     <span style={{ color: "rgba(255,255,255,0.15)" }}>·</span>
                     <h1 className="font-bold text-base">🍅 Pomodoro</h1>
@@ -298,7 +315,7 @@ export default function PomodoroPage() {
                             className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-90"
                             style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}
                         >
-                            <IconSkipForward size={18} className="text-white/60" />
+                            <IconPlayerSkipForward size={18} className="text-white/60" />
                         </button>
                     </div>
                 )}
@@ -306,7 +323,8 @@ export default function PomodoroPage() {
                 {/* ── Duration settings ── */}
                 <div className="w-full max-w-sm">
                     <p className="text-xs font-semibold uppercase tracking-widest text-center mb-3" style={{ color: "rgba(255,255,255,0.25)" }}>
-                        Duration Settings (minutes)
+                        Duration Settings (minutes) <br />
+                        double tap to edit the time
                     </p>
                     <div className="grid grid-cols-3 gap-3">
                         {(["focus", "short", "long"] as SessionType[]).map((type) => {
