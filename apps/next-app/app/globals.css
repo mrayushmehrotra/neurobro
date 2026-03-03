@@ -306,6 +306,12 @@
 .animate-nb-bounce-in { animation: nb-bounce-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
 .animate-nb-spin-slow { animation: nb-spin-slow 8s linear infinite; }
 
+@keyframes nb-caret-blink {
+  0%, 100% { border-color: #f5a623; }
+  50%       { border-color: transparent; }
+}
+.nb-caret { animation: nb-caret-blink 1s step-end infinite; }
+
 /* Staggered children animation */
 .nb-stagger > * { animation: nb-slide-up 0.4s ease-out both; }
 .nb-stagger > *:nth-child(1) { animation-delay: 0.05s; }
