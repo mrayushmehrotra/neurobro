@@ -13,7 +13,6 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
   SidebarSeparator,
@@ -92,16 +91,10 @@ function NavItem({
 
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton
-        isActive={isActive}
-        tooltip={item.label}
-        render={
-          <Link
-            href={item.href}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          />
-        }
+      <Link
+        href={item.href}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className={`
           flex items-center gap-3 px-3 py-3 rounded-xl text-base font-medium
           transition-all duration-200 cursor-pointer
@@ -117,16 +110,13 @@ function NavItem({
           {isAnimatedIcon ? (
             <Icon ref={animatedRef} size={24} />
           ) : (
-            <motion.span
-              className="inline-flex"
-              animate={iconControls}
-            >
+            <motion.span className="inline-flex" animate={iconControls}>
               <Icon size={24} />
             </motion.span>
           )}
         </span>
         <span>{item.label}</span>
-      </SidebarMenuButton>
+      </Link>
     </SidebarMenuItem>
   );
 }
