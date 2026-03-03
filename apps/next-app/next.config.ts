@@ -13,7 +13,9 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Silence the "webpack config but no turbopack config" warning in dev.
+  // next-pwa only injects its webpack plugin during production builds.
+  turbopack: {},
 };
 
 export default withPWA(nextConfig);
