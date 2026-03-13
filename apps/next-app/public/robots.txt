@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://neurobro.vercel.app
+
+# Sitemaps
+Sitemap: https://neurobro.vercel.app/sitemap.xml

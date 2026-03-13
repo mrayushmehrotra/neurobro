@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
 
   // ── PWA manifest hints ─────────────────────────────────────────────────────
-  manifest: undefined,
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
@@ -76,12 +76,31 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NeuroBro",
+    "url": BASE_URL,
+    "description": "Train your memory, math speed, and focus with science-backed mini-games.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${BASE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html lang="en" className={`${outfit.variable} dark`}>
       <Head>
         <link rel="icon" href="/icon-192.png" />
       </Head>
-      <body className="antialiased font-sans">{children}</body>
+      <body className="antialiased font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
