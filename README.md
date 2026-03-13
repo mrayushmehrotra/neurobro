@@ -153,6 +153,9 @@ Tests are written with **Jest** + **@testing-library/react** and cover the core 
 |------------|----------|
 | `mental-math.test.ts` | `randInt` bounds, `minForDigits`/`maxForDigits`, `makeQuestion` arithmetic correctness, op-mode filtering, digit ranges |
 | `typing.test.ts` | Word generation count/validity/randomness, WPM/accuracy calculation, edge cases |
+| `memory.test.ts` | Deck building (pairs, doubling, shuffling), unique IDs, initial states, time formatting |
+| `reaction.test.ts` | Average calculation, reaction band classification, random delay range |
+| `schulte.test.ts` | Grid building (size, sequence, shuffling), time formatting, progress calculation |
 | `pomodoro.test.ts` | Session sequencing, 4-session cycle, `fmtCountdown` formatting |
 | `stopwatch.test.ts` | `fmtMs` display (hours/sub-second), `fmtLap`, `pad` helper |
 
