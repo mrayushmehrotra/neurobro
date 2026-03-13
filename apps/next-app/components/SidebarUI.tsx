@@ -33,6 +33,7 @@ import BrainCircuitIcon from "./ui/brain-circuit-icon";
 import AlarmClockPlusIcon from "./ui/alaram-icon";
 import ClockIcon from "./ui/clock-icon";
 import SlackIcon from "./ui/slack-icon";
+import GithubIcon from "./ui/github-icon";
 
 
 
@@ -134,16 +135,31 @@ export default function SidebarUI({ children }: { children?: React.ReactNode }) 
         {/* Logo / Brand */}
         <SidebarHeader>
           <div className="flex items-center gap-3 px-2 py-3">
+            {/* Brain logo */}
             <div
               className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
               style={{ background: "linear-gradient(135deg, #f5a623, #f97316)", boxShadow: "0 4px 16px rgba(245,166,35,0.35)" }}
             >
               <BrainCircuitIcon size={28} className="text-black" />
             </div>
-            <div>
+
+            {/* Name + subtitle */}
+            <div className="min-w-0">
               <p className="font-bold text-base leading-tight text-white">NeuroBro</p>
               <p className="text-sm leading-tight" style={{ color: "rgba(255,255,255,0.4)" }}>Brain Training</p>
             </div>
+
+            {/* GitHub link — pushed to far right */}
+            <a
+              href="https://github.com/mrayushmehrotra/neurobro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto shrink-0 rounded-lg p-1.5 transition-all hover:scale-110"
+              style={{ color: "rgba(255,255,255,0.45)" }}
+              aria-label="GitHub"
+            >
+              <GithubIcon size={20} />
+            </a>
           </div>
         </SidebarHeader>
 
