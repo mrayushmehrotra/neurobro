@@ -5,21 +5,65 @@ import GameShell from "@/components/GameShell";
 
 export const dynamic = "force-dynamic";
 
+
 // ── Passages ──────────────────────────────────────────────────────────────────
 const PASSAGES = [
+    // Science & biology
     "The human brain can process images in as little as thirteen milliseconds which is faster than the blink of an eye and far quicker than most people realize during their daily activities",
     "Reading faster does not mean understanding less research shows that trained readers who use rapid serial visual presentation often retain as much information as slower careful readers in controlled studies",
-    "The ocean covers more than seventy percent of the surface of the earth yet humans have only explored a small fraction of its depths leaving vast regions completely unknown to modern science",
-    "Light travels at approximately three hundred thousand kilometers per second meaning that when you look at the night sky you are seeing stars as they existed thousands of years in the past",
-    "Ancient civilizations built massive stone structures without modern machinery using only simple tools and organized human labor to construct monuments that have lasted thousands of years across many continents",
     "The human body contains approximately thirty seven trillion cells each performing specific functions that collectively keep you alive breathing thinking and moving through the world every single day of your life",
-    "Forests cover about thirty percent of the land surface of the earth and contain more than eighty percent of all terrestrial species of animals plants and fungi discovered so far",
     "Deep sleep is essential for memory consolidation during this phase the brain replays events from the day transferring information from short term memory into long term storage for future recall",
+    "Neurons in the human brain can fire up to two hundred times per second and a single neuron can connect to thousands of others forming networks of staggering complexity and adaptability",
+    "The immune system produces millions of unique antibodies capable of recognising and neutralising pathogens it has never encountered before making it one of the most sophisticated defence systems in nature",
+    "Your heart beats approximately one hundred thousand times per day pumping roughly five litres of blood per minute through sixty thousand miles of blood vessels spread throughout the entire body",
+    "Dreams occur primarily during the rapid eye movement stage of sleep and the brain during this phase shows activity patterns almost identical to those seen during waking conscious experience",
+
+    // Space & physics
+    "Light travels at approximately three hundred thousand kilometers per second meaning that when you look at the night sky you are seeing stars as they existed thousands of years in the past",
     "Quantum mechanics suggests that particles can exist in multiple states simultaneously until they are observed a phenomenon known as superposition which challenges our everyday understanding of physical reality",
-    "Coffee is the second most traded commodity in the world after petroleum with billions of cups consumed every single day by people on nearly every continent seeking energy and mental clarity",
+    "A black hole is a region of spacetime where gravity is so strong that nothing not even light or other electromagnetic waves has enough speed to escape its pull",
+    "The Milky Way galaxy contains between two hundred and four hundred billion stars and scientists estimate there are more galaxies in the observable universe than grains of sand on all of earths beaches",
+    "Saturn would float if placed in water because it is composed mostly of hydrogen and helium making it the only planet in our solar system with an average density lower than water",
+    "The James Webb Space Telescope can detect infrared light from galaxies formed just a few hundred million years after the big bang giving scientists a window into the very earliest universe",
+    "A single teaspoon of neutron star material would weigh approximately ten million metric tons because neutron stars pack the mass of our sun into a sphere roughly twenty kilometres across",
+
+    // Earth & nature
+    "The ocean covers more than seventy percent of the surface of the earth yet humans have only explored a small fraction of its depths leaving vast regions completely unknown to modern science",
+    "Forests cover about thirty percent of the land surface of the earth and contain more than eighty percent of all terrestrial species of animals plants and fungi discovered so far",
     "The Amazon rainforest produces twenty percent of the worlds oxygen and houses more than ten percent of all species on earth making it the most biodiverse region on the planet",
+    "Lightning strikes the earth approximately one hundred times every single second generating temperatures five times hotter than the surface of the sun and producing over a billion volts of electricity",
+    "Coral reefs occupy less than one percent of the ocean floor yet support around twenty five percent of all marine species making them the most biodiverse ecosystems found beneath the sea",
+    "The deepest point on earth is the Mariana Trench which descends nearly eleven kilometres below sea level a depth so extreme that Mount Everest could be placed inside with room to spare",
+    "Whales communicate using complex songs that can travel thousands of kilometres through the ocean and some species appear to learn new melodies from others suggesting a form of cultural transmission",
+
+    // History & civilisation
+    "Ancient civilizations built massive stone structures without modern machinery using only simple tools and organized human labor to construct monuments that have lasted thousands of years across many continents",
+    "The Roman Empire at its peak controlled territory stretching from Scotland in the north to the Sahara Desert in the south encompassing over five million square kilometres of land",
+    "Written language was invented independently in at least four different civilisations including Mesopotamia Egypt China and Mesoamerica suggesting that complex societies naturally develop the need to record information",
+    "The printing press invented by Gutenberg in around fourteen fifty dramatically accelerated the spread of knowledge and ideas contributing directly to the Renaissance the Reformation and the Scientific Revolution that followed",
+    "The Silk Road was a network of trade routes connecting China to the Mediterranean for over fifteen hundred years facilitating the exchange not just of goods but of cultures ideas and diseases",
+
+    // Psychology & mind
     "Music activates more areas of the brain simultaneously than any other human activity which is why it is used in therapy to help patients recover from strokes and brain injuries",
+    "The placebo effect demonstrates that the mind can produce measurable physical changes in the body simply through belief and expectation revealing the profound connection between thought and physical health",
+    "Studies on decision fatigue show that the quality of choices people make deteriorates significantly after a long series of decisions which is why successful people often simplify their daily routines",
+    "Flow states occur when the challenge of a task precisely matches a persons skill level producing complete absorption focus and a distorted sense of time that feels deeply satisfying",
+    "The mere exposure effect shows that people develop a preference for things simply because they are familiar with them which explains why repeated advertising can make even mediocre products feel appealing",
+
+    // Technology & future
+    "Coffee is the second most traded commodity in the world after petroleum with billions of cups consumed every single day by people on nearly every continent seeking energy and mental clarity",
+    "The internet transmits over two hundred and fifty exabytes of data every single day and the total amount of information created by humanity doubles roughly every two years according to researchers",
+    "Artificial intelligence systems trained on large datasets can now generate photorealistic images compose music write poetry and hold convincing conversations blurring the boundary between human and machine creativity",
+    "The first programmable electronic computer was completed in nineteen forty five measured thirty metres long weighed over twenty seven tonnes and required an entire room just to perform basic calculations",
+    "Lithium ion batteries power nearly every portable device on the planet today and ongoing research into solid state and sodium ion alternatives promises to dramatically increase energy density and reduce cost",
+
+    // Philosophy & society
+    "Aristotle believed that humans are fundamentally social animals and that living in a well ordered community was not merely convenient but essential to the realisation of a fully flourishing human life",
+    "The concept of the overview effect describes the profound cognitive shift reported by astronauts who see the earth from space suddenly perceiving national borders as invisible and humanity as one fragile family",
+    "Compounding interest means that small consistent investments made early in life grow to vastly outperform larger investments made later demonstrating that patience and consistency are among the most powerful financial forces",
+    "Language shapes thought in subtle ways and people who speak languages with different colour vocabularies or different grammatical tenses perceive and remember reality in measurably different ways than other speakers",
 ];
+
 
 const WPM_OPTIONS = [100, 150, 200, 300, 400, 500, 600];
 
