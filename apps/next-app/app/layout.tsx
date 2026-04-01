@@ -78,7 +78,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type":
+     "WebSite",
     "name": "NeuroBro",
     "url": BASE_URL,
     "description": "Train your memory, math speed, and focus with science-backed mini-games.",

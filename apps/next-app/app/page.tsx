@@ -58,6 +58,20 @@ const GAMES = [
     tagBorder: "rgba(16,185,129,0.25)",
     gridLabel: "3 · 5 · 10 rounds",
   },
+  {
+    label: "Quick Read",
+    href: "/games/quick-read",
+    emoji: "👁️",
+    description: "Words flash one at a time in the centre. Read fast, remember more.",
+    gradient: "from-rose-500/20 via-pink-500/10 to-transparent",
+    borderColor: "rgba(251,113,133,0.25)",
+    glowColor: "rgba(251,113,133,0.08)",
+    tag: "Reading",
+    tagColor: "text-rose-400",
+    tagBg: "rgba(251,113,133,0.12)",
+    tagBorder: "rgba(251,113,133,0.25)",
+    gridLabel: "100 – 700 WPM",
+  },
 ];
 
 export default function Home() {
@@ -65,7 +79,7 @@ export default function Home() {
     <SidebarUI>
       <div className="min-h-full relative overflow-hidden" style={{ background: "var(--nb-bg)" }}>
 
-       
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
           {/* ── Hero ── */}
@@ -146,7 +160,7 @@ export default function Home() {
             </div>
           </div>
 
-<br />
+          <br />
           {/* ── Bottom tip ── */}
           <div className="mt-12 text-center animate-nb-slide-up" style={{ animationDelay: "0.4s" }}>
             <p className="text-xs" style={{ color: "rgba(255,255,255,0.2)" }}>
@@ -154,9 +168,9 @@ export default function Home() {
             </p>
           </div>
 
-<br />
-<br />
-<br />
+          <br />
+          <br />
+          <br />
         </div>
       </div>
     </SidebarUI>
