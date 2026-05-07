@@ -2,9 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
-export const BASE_URL =
+const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ?? "https://neurobro.vercel.app";
 
 export const viewport: Viewport = {
@@ -155,7 +159,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
         <meta name="apple-mobile-web-app-title" content="NeuroBro" />
       </head>
       <body className="antialiased font-sans">
@@ -168,3 +175,4 @@ export default function RootLayout({
     </html>
   );
 }
+
