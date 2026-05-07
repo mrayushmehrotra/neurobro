@@ -61,7 +61,7 @@ const GAMES = [
   {
     label: "Quick Read",
     href: "/games/quick-read",
-    emoji: "👁️",
+    emoji: "📖",
     description: "Words flash one at a time in the centre. Read fast, remember more.",
     gradient: "from-rose-500/20 via-pink-500/10 to-transparent",
     borderColor: "rgba(251,113,133,0.25)",
@@ -71,6 +71,20 @@ const GAMES = [
     tagBg: "rgba(251,113,133,0.12)",
     tagBorder: "rgba(251,113,133,0.25)",
     gridLabel: "100 – 700 WPM",
+  },
+  {
+    label: "Eye Training",
+    href: "/games/eye-training",
+    emoji: "👁️",
+    description: "Track moving objects, improve peripheral vision like pro athletes.",
+    gradient: "from-rose-600/20 via-pink-600/10 to-transparent",
+    borderColor: "rgba(244,63,94,0.25)",
+    glowColor: "rgba(244,63,94,0.08)",
+    tag: "Vision",
+    tagColor: "text-pink-400",
+    tagBg: "rgba(244,63,94,0.12)",
+    tagBorder: "rgba(244,63,94,0.25)",
+    gridLabel: "3 modes",
   },
 ];
 

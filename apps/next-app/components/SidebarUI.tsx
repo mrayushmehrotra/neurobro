@@ -28,6 +28,7 @@ import {
   IconClockPlay,
   IconKeyboard,
   IconEye,
+  IconFocus,
 } from "@tabler/icons-react";
 
 import BrainCircuitIcon from "./ui/brain-circuit-icon";
@@ -45,6 +46,7 @@ const GAMES = [
   { label: "Reaction Training", href: "/games/reaction", icon: IconBolt, color: "text-emerald-400", activeColor: "rgba(16,185,129,0.12)", activeBorder: "rgba(16,185,129,0.25)" },
   { label: "Typing Speed", href: "/games/typing", icon: IconKeyboard, color: "text-cyan-400", activeColor: "rgba(34,211,238,0.12)", activeBorder: "rgba(34,211,238,0.25)" },
   { label: "Quick Read", href: "/games/quick-read", icon: IconEye, color: "text-rose-400", activeColor: "rgba(251,113,133,0.12)", activeBorder: "rgba(251,113,133,0.25)" },
+  { label: "Eye Training", href: "/games/eye-training", icon: IconFocus, color: "text-pink-400", activeColor: "rgba(244,63,94,0.12)", activeBorder: "rgba(244,63,94,0.25)" },
 ];
 
 const TOOLS = [
